@@ -1,0 +1,1850 @@
+/* ================================================================
+   STYLE.CSS – Lanka Fresh Mart Sales Dashboard
+   Theme: Neon Cyberpunk (Futuristic Dark Admin Dashboard)
+   ----------------------------------------------------------------
+   Primary Background:   #0A0A0A (deep black)
+   Secondary / Cards:    #171717 (dark charcoal)
+   Accent Blue:          #007BA7 (rich cyan-blue)
+   Neon Red:             #FF1F2D (glowing neon red)
+   Neon Red Glow:        #FF0000 (glow / shadow base)
+   Light Text:           #FFFFFF (high contrast primary)
+   Secondary Text:       #A3A3A3 (clean legible secondary)
+   ================================================================ */
+
+/* ========================= CSS VARIABLES ========================= */
+:root {
+  /* ---- Light Theme (Default clean tech aesthetic) ---- */
+  --clr-bg:             #f0f2f5;          /* Clean light canvas */
+  --clr-surface:        #ffffff;          /* Pure white card surface */
+  --clr-surface-hover:  #f8fafc;          /* Hover surface */
+  --clr-surface-active: #f1f5f9;
+
+  /* ---- Interactive Cyan-Blue Accents ---- */
+  --clr-primary:        #007BA7;          /* Rich cyan-blue accent */
+  --clr-primary-hover:  #00658a;          /* Darker cyan hover for light mode */
+  --clr-primary-light:  rgba(0, 123, 167, 0.1);  /* Light cyan tint */
+  --clr-primary-border: rgba(0, 123, 167, 0.28); /* Light cyan border */
+  --clr-secondary:      #00A3D7;          /* Bright cyan highlight */
+  --clr-accent-blue:    #007BA7;
+  --clr-accent-purple:  #007BA7;
+
+  /* ---- Neon Red Highlights & Alerts ---- */
+  --clr-neon-red:       #FF1F2D;          /* Vibrant neon red */
+  --clr-neon-glow:      #FF0000;          /* Glow tone */
+  --clr-neon-red-light: rgba(255, 31, 45, 0.1);
+  --clr-neon-red-border:rgba(255, 31, 45, 0.28);
+
+  /* ---- Text & Typography ---- */
+  --clr-text:           #111827;          /* Crisp dark text */
+  --clr-text-muted:     #64748b;          /* Secondary text */
+  --clr-text-dim:       #94a3b8;
+
+  /* ---- Borders & Separations ---- */
+  --clr-border:         #e2e8f0;          /* Subtle light border */
+  --clr-border-subtle:  #f1f5f9;
+  --clr-border-glow:    rgba(0, 123, 167, 0.25);
+
+  /* ---- Navbar ---- */
+  --clr-navbar:         #ffffff;
+  --clr-navbar-backdrop:rgba(255, 255, 255, 0.92);
+  --clr-navbar-text:    #64748b;
+  --clr-navbar-active:  #007BA7;
+
+  /* ---- Shadows & Subtle Glows ---- */
+  --clr-shadow:         rgba(0, 0, 0, 0.06);
+  --clr-shadow-lg:      rgba(0, 0, 0, 0.12);
+  --glow-cyan-sm:       0 0 10px rgba(0, 123, 167, 0.3);
+  --glow-cyan-md:       0 0 18px rgba(0, 123, 167, 0.45);
+  --glow-red-sm:        0 0 10px rgba(255, 0, 0, 0.35);
+  --glow-red-md:        0 0 18px rgba(255, 0, 0, 0.5);
+
+  /* ---- Typography ---- */
+  --font-family:        'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* ---- Spacing & Sizing ---- */
+  --radius:             12px;
+  --radius-sm:          8px;
+  --navbar-height:      64px;
+  --transition-speed:   0.25s;
+}
+
+/* ========================= DARK THEME (Neon Cyberpunk) ========================= */
+body.dark {
+  /* ---- Neon Cyberpunk Palette ---- */
+  --clr-bg:             #0A0A0A;          /* Deep black canvas */
+  --clr-surface:        #171717;          /* Dark charcoal cards */
+  --clr-surface-hover:  #212121;          /* Slightly lighter charcoal for hovers */
+  --clr-surface-active: #282828;
+
+  /* Interactive Cyan-Blue Accents */
+  --clr-primary:        #007BA7;          /* Rich cyan-blue accent */
+  --clr-primary-hover:  #0094c9;          /* Bright cyan-blue hover */
+  --clr-primary-light:  rgba(0, 123, 167, 0.16); /* Subtle cyan-blue tint */
+  --clr-primary-border: rgba(0, 123, 167, 0.35); /* Subtle cyan border */
+  --clr-secondary:      #00A3D7;          /* Bright secondary cyan */
+  --clr-accent-blue:    #007BA7;
+  --clr-accent-purple:  #007BA7;
+
+  /* Neon Red Highlights & Alerts */
+  --clr-neon-red:       #FF1F2D;          /* Glowing neon red */
+  --clr-neon-glow:      #FF0000;          /* Pure neon red glow tone */
+  --clr-neon-red-light: rgba(255, 31, 45, 0.15); /* Tinted alert fill */
+  --clr-neon-red-border:rgba(255, 31, 45, 0.38); /* Alert border */
+
+  /* Text & Typography */
+  --clr-text:           #FFFFFF;          /* Light primary text */
+  --clr-text-muted:     #A3A3A3;          /* Secondary text */
+  --clr-text-dim:       #737373;          /* Tertiary / subtle hints */
+
+  /* Borders & Separations */
+  --clr-border:         #262626;          /* Dark charcoal border */
+  --clr-border-subtle:  #1f1f1f;
+  --clr-border-glow:    rgba(0, 123, 167, 0.4);
+
+  /* Navbar */
+  --clr-navbar:         #171717;
+  --clr-navbar-backdrop:rgba(23, 23, 23, 0.88);
+  --clr-navbar-text:    #A3A3A3;
+  --clr-navbar-active:  #FFFFFF;
+
+  /* Shadows & Neon Glows */
+  --clr-shadow:         rgba(0, 0, 0, 0.6);
+  --clr-shadow-lg:      rgba(0, 0, 0, 0.85);
+  --glow-cyan-sm:       0 0 10px rgba(0, 123, 167, 0.45);
+  --glow-cyan-md:       0 0 18px rgba(0, 123, 167, 0.55);
+  --glow-red-sm:        0 0 10px rgba(255, 0, 0, 0.5);
+  --glow-red-md:        0 0 18px rgba(255, 0, 0, 0.65);
+}
+
+/* ========================= RESET & BASE ========================= */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
+body.dark {
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--clr-bg);
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(0, 123, 167, 0.05) 0%, transparent 60%);
+  background-attachment: fixed;
+  color: var(--clr-text);
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--transition-speed),
+              color var(--transition-speed);
+}
+
+body.dark {
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(0, 123, 167, 0.09) 0%, transparent 55%),
+    radial-gradient(circle at 90% 90%, rgba(255, 31, 45, 0.04) 0%, transparent 40%);
+}
+
+/* Custom Cyber Scrollbar */
+/* Custom Cyber Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--clr-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 99px;
+  border: 2px solid var(--clr-bg);
+}
+
+body.dark ::-webkit-scrollbar-thumb {
+  background: #262626;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--clr-primary);
+  box-shadow: 0 0 10px rgba(0, 123, 167, 0.6);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  color: inherit;
+}
+
+/* ================================================================
+   PART A – NAVBAR (Flexbox)
+   ================================================================ */
+
+/* Sticky header bar */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--clr-navbar-backdrop);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--clr-border);
+  box-shadow: 0 4px 20px var(--clr-shadow);
+  transition: background-color var(--transition-speed),
+              border-color var(--transition-speed);
+}
+
+/* Main nav container – Flexbox layout */
+.navbar {
+  display: flex;
+  justify-content: space-between;   /* brand | links | user */
+  align-items: center;
+  height: var(--navbar-height);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---- Brand / Logo ---- */
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar__logo-icon {
+  font-size: 1.5rem;
+  color: var(--clr-primary);
+  filter: drop-shadow(0 0 8px rgba(0, 123, 167, 0.6));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.navbar__brand:hover .navbar__logo-icon {
+  transform: scale(1.08) rotate(-4deg);
+  filter: drop-shadow(0 0 12px rgba(0, 123, 167, 0.85));
+}
+
+.navbar__brand-name {
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: -0.3px;
+  color: var(--clr-text);
+  transition: color var(--transition-speed);
+}
+
+/* ---- Navigation Links ---- */
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.navbar__link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--clr-navbar-text);
+  border: 1px solid transparent;
+  transition: background-color var(--transition-speed),
+              color var(--transition-speed),
+              border-color var(--transition-speed),
+              box-shadow var(--transition-speed),
+              transform 0.15s ease;
+}
+
+.navbar__link i {
+  font-size: 0.95rem;
+  transition: color var(--transition-speed);
+}
+
+/* Hover effect on all links */
+.navbar__link:hover {
+  background-color: var(--clr-primary-light);
+  color: var(--clr-primary);
+  border-color: var(--clr-primary-border);
+  box-shadow: 0 0 10px rgba(0, 123, 167, 0.25);
+  transform: translateY(-1px);
+}
+
+body.dark .navbar__link:hover {
+  color: #FFFFFF;
+}
+
+.navbar__link:hover i {
+  color: var(--clr-secondary);
+}
+
+/* Active link highlight */
+.navbar__link.active {
+  background-color: var(--clr-primary-light);
+  color: var(--clr-primary);
+  border-color: var(--clr-primary-border);
+  font-weight: 600;
+  box-shadow: 0 0 14px rgba(0, 123, 167, 0.3), inset 0 0 8px rgba(0, 123, 167, 0.15);
+}
+
+body.dark .navbar__link.active {
+  color: #FFFFFF;
+}
+
+.navbar__link.active i {
+  color: var(--clr-primary);
+  text-shadow: 0 0 8px rgba(0, 123, 167, 0.6);
+}
+
+/* ---- User Area (right) ---- */
+.navbar__user {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.navbar__avatar {
+  position: relative;
+  font-size: 1.55rem;
+  color: var(--clr-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 6px rgba(0, 123, 167, 0.5));
+}
+
+/* Futuristic neon red alert indicator on user avatar */
+.navbar__avatar::after {
+  content: "";
+  position: absolute;
+  top: 1px;
+  right: 0px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--clr-neon-red);
+  box-shadow: 0 0 8px var(--clr-neon-glow);
+  border: 1.5px solid var(--clr-surface);
+}
+
+.navbar__username {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--clr-text);
+  letter-spacing: 0.2px;
+  transition: color var(--transition-speed);
+}
+
+/* ---- Dark/Light Mode Toggle Button ---- */
+.theme-toggle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--clr-text-muted);
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  transition: background-color var(--transition-speed),
+              color var(--transition-speed),
+              border-color var(--transition-speed),
+              box-shadow var(--transition-speed),
+              transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  background-color: var(--clr-primary-light);
+  color: var(--clr-primary);
+  border-color: var(--clr-primary-border);
+  box-shadow: 0 0 12px rgba(0, 123, 167, 0.4);
+  transform: rotate(15deg);
+}
+
+/* ---- Hamburger Button (hidden on desktop) ---- */
+.navbar__hamburger {
+  display: none;         /* shown only via media query */
+  font-size: 1.4rem;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  align-items: center;
+  justify-content: center;
+  color: var(--clr-text);
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  transition: background-color var(--transition-speed),
+              border-color var(--transition-speed),
+              box-shadow var(--transition-speed);
+}
+
+.navbar__hamburger:hover {
+  background-color: var(--clr-primary-light);
+  border-color: var(--clr-primary-border);
+  color: var(--clr-primary);
+  box-shadow: 0 0 10px rgba(0, 123, 167, 0.3);
+}
+
+/* ================================================================
+   PART B – DASHBOARD LAYOUT (CSS Grid)
+   ================================================================ */
+
+/* Dashboard wrapper */
+.dashboard {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 28px 24px 40px;
+}
+
+/* Dashboard title area */
+.dashboard__header {
+  margin-bottom: 28px;
+}
+
+.dashboard__title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--clr-text);
+  transition: color var(--transition-speed);
+}
+
+.dashboard__subtitle {
+  font-size: 0.95rem;
+  color: var(--clr-text-muted);
+  margin-top: 4px;
+  transition: color var(--transition-speed);
+}
+
+/* ---- KPI Cards Grid ----
+   Desktop: 4 cards in one row using repeat() and fr units. */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+/* Individual KPI card – Flexbox for inner layout */
+.kpi-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--clr-surface);
+  padding: 22px 20px;
+  border-radius: var(--radius);
+  border: 1px solid var(--clr-border);
+  box-shadow: 0 4px 16px var(--clr-shadow);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color var(--transition-speed),
+              background-color var(--transition-speed);
+}
+
+/* Subtle top glow highlight on cards */
+.kpi-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: transparent;
+  transition: background-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.kpi-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 123, 167, 0.45);
+  box-shadow: 0 10px 28px var(--clr-shadow-lg), 0 0 18px rgba(0, 123, 167, 0.18);
+}
+
+.kpi-card:hover::before {
+  background: var(--clr-primary);
+  box-shadow: 0 0 10px rgba(0, 123, 167, 0.7);
+}
+
+/* Icon circle */
+.kpi-card__icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+  border: 1px solid transparent;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.kpi-card:hover .kpi-card__icon-wrap {
+  transform: scale(1.06);
+}
+
+/* Per-card icon colour variants matching Cyberpunk requirements */
+
+/* 1. Revenue: Rich Cyan-Blue */
+.kpi-card__icon-wrap--revenue {
+  background: rgba(0, 123, 167, 0.16);
+  color: var(--clr-primary);
+  border-color: rgba(0, 123, 167, 0.35);
+  box-shadow: 0 0 12px rgba(0, 123, 167, 0.3);
+}
+
+/* 2. Units Sold: Vibrant Cyan */
+.kpi-card__icon-wrap--units {
+  background: rgba(0, 163, 215, 0.16);
+  color: var(--clr-secondary);
+  border-color: rgba(0, 163, 215, 0.35);
+  box-shadow: 0 0 12px rgba(0, 163, 215, 0.3);
+}
+
+/* 3. Best Month / Peak Month: Striking Glowing Neon Red Highlight */
+.kpi-card__icon-wrap--month {
+  background: var(--clr-neon-red-light);
+  color: var(--clr-neon-red);
+  border-color: var(--clr-neon-red-border);
+  box-shadow: 0 0 14px rgba(255, 0, 0, 0.45);
+}
+
+.kpi-card#kpi-month:hover,
+.kpi-card#sales-kpi-month:hover {
+  border-color: rgba(255, 31, 45, 0.5);
+  box-shadow: 0 10px 28px var(--clr-shadow-lg), 0 0 18px rgba(255, 0, 0, 0.22);
+}
+
+.kpi-card#kpi-month:hover::before,
+.kpi-card#sales-kpi-month:hover::before {
+  background: var(--clr-neon-red);
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+}
+
+/* 4. Best Branch / Monthly Average: Rich Cyan-Blue */
+.kpi-card__icon-wrap--branch {
+  background: rgba(0, 123, 167, 0.16);
+  color: var(--clr-primary);
+  border-color: rgba(0, 123, 167, 0.35);
+  box-shadow: 0 0 12px rgba(0, 123, 167, 0.3);
+}
+
+/* Card text body – Flexbox column */
+.kpi-card__body {
+  display: flex;
+  flex-direction: column;
+}
+
+.kpi-card__label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--clr-text-muted);
+  transition: color var(--transition-speed);
+}
+
+.kpi-card__value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--clr-text);
+  margin-top: 2px;
+  letter-spacing: -0.2px;
+  transition: color var(--transition-speed);
+}
+
+/* ---- Charts Grid ----
+   Desktop: two charts side by side. */
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "line-chart bar-chart";
+  gap: 20px;
+}
+
+/* Chart card wrapper */
+.chart-card {
+  background: var(--clr-surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--clr-border);
+  padding: 24px;
+  box-shadow: 0 4px 16px var(--clr-shadow);
+  transition: background-color var(--transition-speed),
+              border-color var(--transition-speed),
+              box-shadow var(--transition-speed);
+}
+
+.chart-card:hover {
+  border-color: rgba(0, 123, 167, 0.35);
+  box-shadow: 0 8px 24px var(--clr-shadow), 0 0 14px rgba(0, 123, 167, 0.12);
+}
+
+.chart-card--line { grid-area: line-chart; }
+.chart-card--bar  { grid-area: bar-chart;  }
+
+.chart-card__title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--clr-text);
+  letter-spacing: 0.1px;
+  transition: color var(--transition-speed);
+}
+
+.chart-card__title i {
+  color: var(--clr-primary);
+  text-shadow: 0 0 8px rgba(0, 123, 167, 0.5);
+}
+
+/* Canvas wrapper */
+.chart-card__canvas-wrap {
+  position: relative;
+  width: 100%;
+}
+
+/* ================================================================
+   BRANCH PROGRESS RANKING SECTION
+   ================================================================ */
+
+.ranking-section {
+  margin-top: 28px;
+}
+
+.ranking-section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.ranking-section__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--clr-text);
+  letter-spacing: -0.2px;
+  transition: color var(--transition-speed);
+}
+
+.ranking-section__title i {
+  color: var(--clr-primary);
+  font-size: 1.25rem;
+  text-shadow: 0 0 10px rgba(0, 123, 167, 0.6);
+}
+
+.ranking-section__controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ranking-section__hint {
+  margin-top: 5px;
+  font-size: 0.82rem;
+  color: var(--clr-text-muted);
+  transition: color var(--transition-speed);
+}
+
+.ranking-section__label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--clr-text-muted);
+  transition: color var(--transition-speed);
+}
+
+.ranking-section__select {
+  font-family: var(--font-family);
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 7px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--clr-border);
+  background-color: var(--clr-surface);
+  color: var(--clr-text);
+  cursor: pointer;
+  transition: border-color var(--transition-speed),
+              background-color var(--transition-speed),
+              box-shadow var(--transition-speed),
+              color var(--transition-speed);
+}
+
+.ranking-section__select:focus {
+  outline: none;
+  border-color: var(--clr-primary);
+  box-shadow: 0 0 0 2px var(--clr-bg), 0 0 12px rgba(0, 123, 167, 0.55);
+}
+
+/* Ranking list container */
+.ranking-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Individual ranking card */
+.ranking-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--clr-surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--clr-border);
+  padding: 20px 24px;
+  box-shadow: 0 4px 16px var(--clr-shadow);
+  transition: transform 0.25s ease,
+              box-shadow 0.25s ease,
+              border-color var(--transition-speed),
+              background-color var(--transition-speed);
+  animation: fadeSlideUp 0.4s ease both;
+}
+
+.ranking-card:nth-child(1) { animation-delay: 0.05s; }
+.ranking-card:nth-child(2) { animation-delay: 0.12s; }
+.ranking-card:nth-child(3) { animation-delay: 0.20s; }
+
+.ranking-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 123, 167, 0.4);
+  box-shadow: 0 8px 24px var(--clr-shadow-lg), 0 0 16px rgba(0, 123, 167, 0.15);
+  cursor: pointer;
+}
+
+.ranking-card:focus-visible {
+  outline: 3px solid var(--clr-primary);
+  outline-offset: 3px;
+  border-color: var(--clr-primary);
+}
+
+/* Rank badge circle */
+.ranking-card__rank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.05rem;
+  font-weight: 800;
+  flex-shrink: 0;
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+/* Cyberpunk podium highlights */
+/* Rank 1 – Striking Glowing Neon Red */
+.ranking-card__rank--1 {
+  background: var(--clr-neon-red);
+  box-shadow: 0 0 16px rgba(255, 0, 0, 0.65), 0 4px 10px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Rank 2 – Rich Cyan-Blue */
+.ranking-card__rank--2 {
+  background: var(--clr-primary);
+  box-shadow: 0 0 14px rgba(0, 123, 167, 0.6), 0 4px 10px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Rank 3 – Subtle Slate / Charcoal with Cyan Outline */
+.ranking-card__rank--3 {
+  background: var(--clr-border);
+  color: var(--clr-text-muted);
+  border: 1px solid var(--clr-border-subtle);
+  box-shadow: 0 2px 6px var(--clr-shadow);
+}
+
+body.dark .ranking-card__rank--3 {
+  background: #262626;
+  color: var(--clr-text-muted);
+  border: 1px solid rgba(0, 123, 167, 0.35);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Card body — takes remaining space */
+.ranking-card__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.ranking-card__top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.ranking-card__branch-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--clr-text);
+  transition: color var(--transition-speed);
+}
+
+.ranking-card__value {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--clr-text-muted);
+  transition: color var(--transition-speed);
+}
+
+/* Progress bar track */
+.ranking-card__bar-track {
+  width: 100%;
+  height: 10px;
+  border-radius: 99px;
+  background: var(--clr-bg);
+  border: 1px solid var(--clr-border);
+  overflow: hidden;
+  transition: background-color var(--transition-speed);
+}
+
+/* Progress bar fill */
+.ranking-card__bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  width: 0;
+}
+
+/* Neon Cyberpunk Bar Fills */
+/* Rank 1: Neon Red Gradient with Glow */
+.ranking-card__bar-fill--1 {
+  background: linear-gradient(90deg, #FF1F2D, #FF4B56);
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.6);
+}
+
+/* Rank 2: Rich Cyan-Blue Gradient with Glow */
+.ranking-card__bar-fill--2 {
+  background: linear-gradient(90deg, #007BA7, #00A3D7);
+  box-shadow: 0 0 12px rgba(0, 123, 167, 0.55);
+}
+
+/* Rank 3: Deep Cyan Slate Gradient */
+.ranking-card__bar-fill--3 {
+  background: linear-gradient(90deg, #94a3b8, var(--clr-primary));
+  box-shadow: 0 0 8px rgba(0, 123, 167, 0.25);
+}
+
+body.dark .ranking-card__bar-fill--3 {
+  background: linear-gradient(90deg, #133948, #007BA7);
+  box-shadow: 0 0 8px rgba(0, 123, 167, 0.35);
+}
+
+/* Percentage label next to progress bar */
+.ranking-card__pct {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--clr-text-muted);
+  margin-top: 5px;
+  text-align: right;
+  transition: color var(--transition-speed);
+}
+
+.ranking-card__detail-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 9px;
+  color: var(--clr-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.ranking-card:hover .ranking-card__detail-link {
+  color: var(--clr-secondary);
+}
+
+/* Delta tag (change indicator) */
+.ranking-card__delta {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 99px;
+  margin-left: 8px;
+}
+
+/* Positive delta: Cyan-Blue */
+.ranking-card__delta--up,
+body.dark .ranking-card__delta--up {
+  background: var(--clr-primary-light);
+  color: var(--clr-secondary);
+  border: 1px solid var(--clr-primary-border);
+  text-shadow: 0 0 6px rgba(0, 163, 215, 0.4);
+}
+
+/* Negative delta: Glowing Neon Red Alert */
+.ranking-card__delta--down,
+body.dark .ranking-card__delta--down {
+  background: var(--clr-neon-red-light);
+  color: var(--clr-neon-red);
+  border: 1px solid var(--clr-neon-red-border);
+  text-shadow: 0 0 6px rgba(255, 0, 0, 0.6);
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.25);
+}
+
+/* Fade-slide-up animation */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================================================================
+   PAGE NAVIGATION & VIEWS
+   ================================================================ */
+.page-view {
+  display: none;
+}
+
+.page-view.active {
+  display: block;
+  animation: pageFadeIn 0.35s ease;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Base page containers for Sales, Reports, Settings */
+.sales-page,
+.reports-page,
+.settings-page {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 28px 24px 40px;
+}
+
+/* ================================================================
+   PAGE HEADER & ACTIONS
+   ================================================================ */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.page-header__left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.page-header__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 4px 12px;
+  border-radius: 99px;
+  background-color: var(--clr-primary-light);
+  color: var(--clr-secondary);
+  border: 1px solid var(--clr-primary-border);
+  box-shadow: 0 0 10px rgba(0, 123, 167, 0.25);
+  width: fit-content;
+  margin-bottom: 2px;
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--clr-text);
+  transition: color var(--transition-speed);
+}
+
+.page-subtitle {
+  font-size: 0.95rem;
+  color: var(--clr-text-muted);
+  transition: color var(--transition-speed);
+}
+
+.page-header__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Button styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 9px 18px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn--outline {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  color: var(--clr-text);
+  box-shadow: 0 2px 6px var(--clr-shadow);
+}
+
+.btn--outline:hover {
+  border-color: var(--clr-primary);
+  color: var(--clr-primary);
+  background-color: var(--clr-primary-light);
+  box-shadow: 0 0 12px rgba(0, 123, 167, 0.35);
+  transform: translateY(-1px);
+}
+
+body.dark .btn--outline:hover {
+  color: #FFFFFF;
+}
+
+.btn--outline:active {
+  transform: translateY(0);
+}
+
+/* Alert / Destructive button styles using Neon Red */
+.btn--danger,
+.btn--destructive {
+  background: var(--clr-neon-red-light);
+  border: 1px solid var(--clr-neon-red);
+  color: var(--clr-neon-red);
+  box-shadow: 0 0 12px rgba(255, 0, 0, 0.3);
+}
+
+.btn--danger:hover,
+.btn--destructive:hover {
+  background: var(--clr-neon-red);
+  color: #FFFFFF;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.65);
+}
+
+/* ================================================================
+   BRANCH SELECTOR CARD
+   ================================================================ */
+.branch-selector-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: 0 4px 16px var(--clr-shadow);
+  margin-bottom: 24px;
+  transition: background-color var(--transition-speed),
+              border-color var(--transition-speed);
+}
+
+.branch-selector-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--clr-border);
+}
+
+.branch-selector-card__info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.branch-selector-card__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--clr-primary-light);
+  color: var(--clr-primary);
+  border: 1px solid var(--clr-primary-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  box-shadow: 0 0 12px rgba(0, 123, 167, 0.3);
+  flex-shrink: 0;
+}
+
+.branch-selector-card__title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--clr-text);
+  letter-spacing: -0.2px;
+  transition: color var(--transition-speed);
+}
+
+.branch-selector-card__desc {
+  font-size: 0.85rem;
+  color: var(--clr-text-muted);
+  margin-top: 2px;
+  transition: color var(--transition-speed);
+}
+
+.branch-select-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.branch-select-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--clr-text-muted);
+}
+
+.custom-select-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-select {
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 9px 38px 9px 16px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--clr-primary);
+  background-color: var(--clr-surface);
+  color: var(--clr-text);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 123, 167, 0.2);
+  transition: border-color var(--transition-speed),
+              background-color var(--transition-speed),
+              box-shadow var(--transition-speed),
+              color var(--transition-speed);
+}
+
+.custom-select:focus {
+  outline: none;
+  border-color: var(--clr-primary);
+  box-shadow: 0 0 0 2px var(--clr-bg), 0 0 14px rgba(0, 123, 167, 0.55);
+}
+
+.custom-select-arrow {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 0.75rem;
+  color: var(--clr-primary);
+}
+
+.branch-pill-list {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.branch-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 99px;
+  border: 1px solid var(--clr-border);
+  background: var(--clr-surface);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--clr-text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.branch-pill:hover {
+  border-color: var(--clr-primary);
+  color: var(--clr-primary);
+  background-color: var(--clr-primary-light);
+  box-shadow: 0 0 10px rgba(0, 123, 167, 0.3);
+  transform: translateY(-1px);
+}
+
+body.dark .branch-pill:hover {
+  color: #FFFFFF;
+}
+
+.branch-pill.active {
+  background-color: var(--clr-primary);
+  color: #FFFFFF;
+  border-color: var(--clr-primary);
+  box-shadow: 0 0 14px rgba(0, 123, 167, 0.55), inset 0 0 6px rgba(255, 255, 255, 0.2);
+}
+
+/* ================================================================
+   SALES KPI GRID
+   ================================================================ */
+.sales-kpi-grid {
+  margin-bottom: 24px;
+}
+
+/* ================================================================
+   SALES DETAIL CHART CARD
+   ================================================================ */
+.sales-chart-card {
+  margin-bottom: 24px;
+}
+
+.sales-chart-card .chart-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.chart-legend-custom {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.legend-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--clr-text-muted);
+}
+
+/* Legend items corresponding to cyan-blue revenue and neon-red units */
+.legend-badge--rev i {
+  color: var(--clr-primary);
+  text-shadow: 0 0 8px rgba(0, 123, 167, 0.6);
+}
+
+.legend-badge--units i {
+  color: var(--clr-neon-red);
+  text-shadow: 0 0 8px rgba(255, 0, 0, 0.7);
+}
+
+/* ================================================================
+   SALES DETAILS TABLE CARD
+   ================================================================ */
+.table-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: 0 4px 16px var(--clr-shadow);
+  margin-bottom: 24px;
+  transition: background-color var(--transition-speed),
+              border-color var(--transition-speed);
+}
+
+.table-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.table-card__title-wrap {
+  flex: 1;
+  min-width: 240px;
+}
+
+.table-card__title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--clr-text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: -0.2px;
+  transition: color var(--transition-speed);
+}
+
+.table-card__title i {
+  color: var(--clr-primary);
+  text-shadow: 0 0 8px rgba(0, 123, 167, 0.5);
+}
+
+.table-card__subtitle {
+  font-size: 0.85rem;
+  color: var(--clr-text-muted);
+  margin-top: 3px;
+  transition: color var(--transition-speed);
+}
+
+.table-card__controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Filter pills (Quarter) */
+.filter-pills {
+  display: flex;
+  align-items: center;
+  background: var(--clr-bg);
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  gap: 4px;
+  border: 1px solid var(--clr-border);
+}
+
+.filter-pill {
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--clr-text-muted);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.filter-pill:hover {
+  color: var(--clr-text);
+}
+
+.filter-pill.active {
+  background: var(--clr-surface);
+  color: var(--clr-secondary);
+  border: 1px solid var(--clr-primary-border);
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(0, 123, 167, 0.3);
+}
+
+/* Table search input */
+.table-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.table-search__icon {
+  position: absolute;
+  left: 12px;
+  font-size: 0.85rem;
+  color: var(--clr-text-muted);
+  pointer-events: none;
+}
+
+.table-search__input {
+  font-family: inherit;
+  font-size: 0.85rem;
+  padding: 7px 14px 7px 34px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--clr-border);
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  width: 170px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.table-search__input:focus {
+  border-color: var(--clr-primary);
+  width: 210px;
+  box-shadow: 0 0 12px rgba(0, 123, 167, 0.4);
+}
+
+/* ================================================================
+   SALES TABLE
+   ================================================================ */
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--clr-border);
+}
+
+.sales-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.sales-table th {
+  background: var(--clr-bg);
+  color: var(--clr-text-muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.6px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--clr-border);
+  white-space: nowrap;
+  transition: background-color var(--transition-speed),
+              color var(--transition-speed);
+}
+
+.sales-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--clr-border);
+  color: var(--clr-text);
+  vertical-align: middle;
+  transition: background-color 0.15s ease,
+              color var(--transition-speed);
+}
+
+.sales-table tbody tr:hover td {
+  background-color: var(--clr-surface-hover);
+}
+
+.sales-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Table columns layout */
+.sales-table .th--num,
+.sales-table .td--num {
+  width: 45px;
+  text-align: center;
+  color: var(--clr-text-muted);
+  font-weight: 600;
+}
+
+.sales-table .th--month,
+.sales-table .td--month {
+  font-weight: 700;
+  color: var(--clr-text);
+}
+
+.sales-table .th--revenue,
+.sales-table .td--revenue {
+  text-align: right;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.sales-table .th--units,
+.sales-table .td--units {
+  text-align: right;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.sales-table .th--avg,
+.sales-table .td--avg {
+  text-align: right;
+  color: var(--clr-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.sales-table .th--mom,
+.sales-table .td--mom {
+  text-align: center;
+}
+
+.sales-table .th--share,
+.sales-table .td--share {
+  min-width: 170px;
+}
+
+/* Trend indicator badges */
+.trend-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 99px;
+}
+
+/* Up: Cyan-Blue */
+.trend-badge--up,
+body.dark .trend-badge--up {
+  background: var(--clr-primary-light);
+  color: var(--clr-secondary);
+  border: 1px solid var(--clr-primary-border);
+  text-shadow: 0 0 6px rgba(0, 163, 215, 0.4);
+}
+
+/* Down: Glowing Neon Red Alert */
+.trend-badge--down,
+body.dark .trend-badge--down {
+  background: var(--clr-neon-red-light);
+  color: var(--clr-neon-red);
+  border: 1px solid var(--clr-neon-red-border);
+  text-shadow: 0 0 6px rgba(255, 0, 0, 0.6);
+  box-shadow: 0 0 8px rgba(255, 0, 0, 0.25);
+}
+
+/* Neutral: Muted secondary text */
+.trend-badge--neutral,
+body.dark .trend-badge--neutral {
+  background: rgba(163, 163, 163, 0.12);
+  color: var(--clr-text-muted);
+  border: 1px solid rgba(163, 163, 163, 0.2);
+}
+
+/* Share of Annual Revenue mini-progress */
+.share-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.share-progress__track {
+  flex: 1;
+  height: 8px;
+  background: var(--clr-bg);
+  border: 1px solid var(--clr-border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.share-progress__fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--clr-primary), var(--clr-secondary));
+  box-shadow: 0 0 8px rgba(0, 123, 167, 0.45);
+  border-radius: 99px;
+  transition: width 0.6s ease;
+}
+
+.share-progress__text {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--clr-text-muted);
+  width: 44px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Table Footer Summary Row */
+.sales-table tfoot {
+  background: var(--clr-bg);
+  font-weight: 800;
+}
+
+.sales-table tfoot td {
+  padding: 16px 18px;
+  border-top: 2px solid var(--clr-border);
+  border-bottom: none;
+  font-weight: 800;
+  color: var(--clr-text);
+  font-size: 0.92rem;
+}
+
+.sales-table tfoot .td--revenue {
+  color: var(--clr-primary);
+  text-shadow: 0 0 8px rgba(0, 123, 167, 0.5);
+  font-size: 1rem;
+}
+
+/* ================================================================
+   REPORTS & SETTINGS CARDS
+   ================================================================ */
+.settings-card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: 0 4px 16px var(--clr-shadow);
+}
+
+.settings-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--clr-border);
+  gap: 16px;
+}
+
+.settings-item:last-child {
+  border-bottom: none;
+}
+
+.settings-item__title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--clr-text);
+}
+
+.settings-item__desc {
+  font-size: 0.82rem;
+  color: var(--clr-text-muted);
+  margin-top: 2px;
+}
+
+.badge--pill {
+  padding: 4px 12px;
+  border-radius: 99px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: var(--clr-primary-light);
+  color: var(--clr-secondary);
+  border: 1px solid var(--clr-primary-border);
+  text-shadow: 0 0 6px rgba(0, 163, 215, 0.35);
+  box-shadow: 0 0 8px rgba(0, 123, 167, 0.2);
+  white-space: nowrap;
+}
+
+/* Notification & Warning Indicators */
+.badge--alert,
+.badge--neon-red {
+  background: var(--clr-neon-red-light);
+  color: var(--clr-neon-red);
+  border: 1px solid var(--clr-neon-red-border);
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+  text-shadow: 0 0 6px rgba(255, 0, 0, 0.6);
+}
+
+/* ================================================================
+   FOOTER
+   ================================================================ */
+.site-footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 0.82rem;
+  color: var(--clr-text-dim);
+  background: var(--clr-bg);
+  border-top: 1px solid var(--clr-border);
+  transition: color var(--transition-speed),
+              border-color var(--transition-speed);
+}
+
+/* ================================================================
+   MEDIA QUERIES – RESPONSIVE DESIGN
+   ================================================================ */
+
+/* ---------- TABLET (769px – 1024px) ---------- */
+@media (max-width: 1024px) {
+  /* KPI cards: 2 per row */
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Charts: stacked on smaller tablets, side by side on larger */
+  .charts-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "line-chart bar-chart";
+  }
+}
+
+/* ---------- MOBILE (768px and below) ---------- */
+@media (max-width: 768px) {
+  /* Show hamburger button */
+  .navbar__hamburger {
+    display: flex;
+  }
+
+  /* Hide desktop nav links and user area */
+  .navbar__links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: var(--navbar-height);
+    left: 0;
+    right: 0;
+    background: var(--clr-surface);
+    border-bottom: 1px solid var(--clr-border);
+    padding: 14px 20px;
+    box-shadow: 0 12px 30px var(--clr-shadow-lg);
+    gap: 6px;
+    animation: slideDown 0.25s ease forwards;
+  }
+
+  /* When the menu is open, display the links */
+  .navbar__links.open {
+    display: flex;
+  }
+
+  .navbar__link {
+    width: 100%;
+    padding: 12px 16px;
+  }
+
+  /* Hide the user area text on mobile, keep toggle & icon */
+  .navbar__username {
+    display: none;
+  }
+
+  /* KPI cards: 1 per row */
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Charts: stacked */
+  .charts-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "line-chart"
+      "bar-chart";
+  }
+
+  /* Ranking: adjust padding */
+  .ranking-section__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ranking-card {
+    padding: 16px 18px;
+    gap: 14px;
+  }
+
+  .ranking-card__rank {
+    width: 38px;
+    height: 38px;
+    font-size: 0.9rem;
+  }
+
+  /* Slightly smaller title */
+  .dashboard__title,
+  .page-title {
+    font-size: 1.4rem;
+  }
+
+  /* Branch selector responsive */
+  .branch-selector-card__top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .branch-select-group {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .custom-select {
+    width: 100%;
+  }
+
+  /* Table controls stack */
+  .table-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .table-card__controls {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-pills {
+    overflow-x: auto;
+    width: 100%;
+  }
+
+  .table-search {
+    width: 100%;
+  }
+
+  .table-search__input {
+    width: 100%;
+  }
+
+  .table-search__input:focus {
+    width: 100%;
+  }
+
+  .sales-page,
+  .reports-page,
+  .settings-page {
+    padding: 20px 16px 32px;
+  }
+}
+
+/* ---- Slide-down animation for mobile menu ---- */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---- Print Stylesheet ---- */
+@media print {
+  .site-header,
+  .site-footer,
+  .page-header__actions,
+  .branch-selector-card,
+  .table-card__controls,
+  .ranking-section__controls {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+
+  .page-view {
+    display: block !important;
+  }
+
+  .table-card,
+  .chart-card,
+  .kpi-card {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+}

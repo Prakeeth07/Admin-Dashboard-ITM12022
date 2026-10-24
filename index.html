@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- ==================== META ==================== -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta name="description"
+    content="Lanka Fresh Mart – Sales Performance Dashboard for Colombo, Kandy and Galle branches.">
+  <title>Lanka Fresh Mart | Sales Dashboard</title>
+
+  <!-- ==================== EXTERNAL RESOURCES ==================== -->
+  <!-- Google Fonts – Inter for clean, modern typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6 – icon library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Chart.js – charting library loaded from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <!-- Project stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="dark">
+
+  <!-- ============================================================
+       PART A – RESPONSIVE NAVIGATION BAR
+       Semantic <header> wrapping <nav> with Flexbox layout.
+       ============================================================ -->
+  <header class="site-header" id="site-header">
+    <nav class="navbar" id="navbar" aria-label="Main navigation">
+
+      <!-- Brand / logo area (left) -->
+      <div class="navbar__brand">
+        <i class="fa-solid fa-leaf navbar__logo-icon"></i>
+        <span class="navbar__brand-name">Lanka Fresh Mart</span>
+      </div>
+
+      <!-- Hamburger button – visible only on mobile (≤768px) -->
+      <button class="navbar__hamburger" id="hamburger-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <!-- Navigation links (at least four) -->
+      <ul class="navbar__links" id="nav-links">
+        <li><a href="#" class="navbar__link active" data-page="dashboard"><i class="fa-solid fa-gauge"></i>
+            Dashboard</a></li>
+        <li><a href="#" class="navbar__link" data-page="sales"><i class="fa-solid fa-cart-shopping"></i> Sales</a></li>
+        <li><a href="#" class="navbar__link" data-page="reports"><i class="fa-solid fa-chart-pie"></i> Reports</a></li>
+        <li><a href="#" class="navbar__link" data-page="settings"><i class="fa-solid fa-gear"></i> Settings</a></li>
+      </ul>
+
+      <!-- User area (right) – name & avatar icon -->
+      <div class="navbar__user" id="user-area">
+        <!-- Dark / Light mode toggle -->
+        <button class="theme-toggle" id="theme-toggle-btn" aria-label="Switch to light mode" title="Switch to light mode">
+          <i class="fa-solid fa-sun" id="theme-icon"></i>
+        </button>
+        <div class="navbar__avatar">
+          <i class="fa-solid fa-circle-user"></i>
+        </div>
+        <span class="navbar__username">Admin</span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============================================================
+       MAIN CONTENT CONTAINER
+       Contains individual page views: Dashboard, Sales, Reports, Settings
+       ============================================================ -->
+  <main id="main-content">
+
+    <!-- ============================================================
+         PAGE 1: DASHBOARD LAYOUT (CSS Grid)
+         ============================================================ -->
+    <section class="dashboard page-view active" id="page-dashboard" aria-label="Sales Dashboard">
+
+      <!-- Page heading -->
+      <section class="dashboard__header">
+        <h1 class="dashboard__title">Sales Dashboard</h1>
+        <p class="dashboard__subtitle">Performance overview — Lanka Fresh Mart branches</p>
+      </section>
+
+      <!-- ---- KPI Summary Cards (4 cards in a CSS Grid row) ---- -->
+      <section class="kpi-grid" id="kpi-grid" aria-label="Key performance indicators">
+
+        <!-- Card 1 – Total Revenue -->
+        <article class="kpi-card" id="kpi-revenue">
+          <div class="kpi-card__icon-wrap kpi-card__icon-wrap--revenue">
+            <i class="fa-solid fa-sack-dollar"></i>
+          </div>
+          <div class="kpi-card__body">
+            <span class="kpi-card__label">Total Revenue</span>
+            <span class="kpi-card__value" id="kpi-revenue-value">—</span>
+          </div>
+        </article>
+
+        <!-- Card 2 – Total Units Sold -->
+        <article class="kpi-card" id="kpi-units">
+          <div class="kpi-card__icon-wrap kpi-card__icon-wrap--units">
+            <i class="fa-solid fa-boxes-stacked"></i>
+          </div>
+          <div class="kpi-card__body">
+            <span class="kpi-card__label">Total Units Sold</span>
+            <span class="kpi-card__value" id="kpi-units-value">—</span>
+          </div>
+        </article>
+
+        <!-- Card 3 – Best Month -->
+        <article class="kpi-card" id="kpi-month">
+          <div class="kpi-card__icon-wrap kpi-card__icon-wrap--month">
+            <i class="fa-solid fa-calendar-check"></i>
+          </div>
+          <div class="kpi-card__body">
+            <span class="kpi-card__label">Best Month</span>
+            <span class="kpi-card__value" id="kpi-month-value">—</span>
+          </div>
+        </article>
+
+        <!-- Card 4 – Best Branch -->
+        <article class="kpi-card" id="kpi-branch">
+          <div class="kpi-card__icon-wrap kpi-card__icon-wrap--branch">
+            <i class="fa-solid fa-store"></i>
+          </div>
+          <div class="kpi-card__body">
+            <span class="kpi-card__label">Best Branch</span>
+            <span class="kpi-card__value" id="kpi-branch-value">—</span>
+          </div>
+        </article>
+      </section>
+
+      <!-- ---- Chart Areas (placed in grid areas below cards) ---- -->
+      <section class="charts-grid" id="charts-grid" aria-label="Sales charts">
+
+        <!-- Line chart – Monthly Revenue (Jan–Dec) -->
+        <article class="chart-card chart-card--line" id="chart-line-card">
+          <h2 class="chart-card__title"><i class="fa-solid fa-chart-line"></i> Monthly Revenue (Jan – Dec)</h2>
+          <div class="chart-card__canvas-wrap">
+            <canvas id="revenue-line-chart" aria-label="Line chart showing monthly revenue from January to December"></canvas>
+          </div>
+        </article>
+
+        <!-- Column chart – Annual Revenue by Branch -->
+        <article class="chart-card chart-card--bar" id="chart-bar-card">
+          <h2 class="chart-card__title"><i class="fa-solid fa-chart-column"></i> Annual Revenue by Branch</h2>
+          <div class="chart-card__canvas-wrap">
+            <canvas id="branch-bar-chart" aria-label="Bar chart comparing annual revenue across branches"></canvas>
+          </div>
+        </article>
+      </section>
+
+      <!-- ---- Branch Progress Ranking (Best → Worst) ---- -->
+      <section class="ranking-section" id="ranking-section" aria-label="Branch progress ranking">
+        <div class="ranking-section__header">
+          <div>
+            <h2 class="ranking-section__title"><i class="fa-solid fa-ranking-star"></i> Branch Progress — Best to Worst</h2>
+            <p class="ranking-section__hint" id="ranking-period-summary">Showing annual branch performance. Select a month to compare its results.</p>
+          </div>
+          <div class="ranking-section__controls">
+            <label for="ranking-period" class="ranking-section__label">Period:</label>
+            <select id="ranking-period" class="ranking-section__select" aria-label="Choose a reporting period">
+              <option value="all" selected>All Year</option>
+              <option value="0">January</option>
+              <option value="1">February</option>
+              <option value="2">March</option>
+              <option value="3">April</option>
+              <option value="4">May</option>
+              <option value="5">June</option>
+              <option value="6">July</option>
+              <option value="7">August</option>
+              <option value="8">September</option>
+              <option value="9">October</option>
+              <option value="10">November</option>
+              <option value="11">December</option>
+            </select>
+            <label for="ranking-metric" class="ranking-section__label">Metric:</label>
+            <select id="ranking-metric" class="ranking-section__select">
+              <option value="revenue" selected>Annual Revenue</option>
+              <option value="units">Units Sold</option>
+              <option value="growth">Revenue Growth (H1→H2)</option>
+            </select>
+          </div>
+        </div>
+        <div class="ranking-list" id="ranking-list">
+          <!-- Populated dynamically by script.js -->
+        </div>
+      </section>
+    </section>
+
+    <!-- ============================================================
+         PAGE 2: SALES DETAILS PAGE VIEW
+         Allows selecting which branch to view, displays branch KPIs,
+         monthly revenue, units sold, and full monthly details table.
+         ============================================================ -->
+    <section class="sales-page page-view" id="page-sales" aria-label="Branch Sales Details">
+      
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="page-header__left">
+          <span class="page-header__badge"><i class="fa-solid fa-cart-shopping"></i> Sales Details</span>
+          <h1 class="page-title">Branch Sales Performance</h1>
+          <p class="page-subtitle">Detailed monthly breakdown of revenue, units sold, and performance metrics</p>
+        </div>
+        <div class="page-header__actions">
+          <button type="button" class="btn btn--outline" id="export-csv-btn" title="Download sales data as CSV">
+            <i class="fa-solid fa-file-arrow-down"></i> Export CSV
+          </button>
+          <button type="button" class="btn btn--outline" id="print-sales-btn" title="Print this sales page">
+            <i class="fa-solid fa-print"></i> Print
+          </button>
+        </div>
+      </div>
+
+      <!-- ---- Branch Selector Section ("before that add we can choose which branch sales details we want to see") ---- -->
+      <section class="branch-selector-card" aria-label="Choose Branch">
+        <div class="branch-selector-card__top">
+          <div class="branch-selector-card__info">
+            <div class="branch-selector-card__icon">
+              <i class="fa-solid fa-store"></i>
+            </div>
+            <div>
+              <h2 class="branch-selector-card__title">Choose Branch</h2>
+              <p class="branch-selector-card__desc">Select which branch sales details you want to see</p>
+            </div>
+          </div>
+          
+          <!-- Dropdown selector -->
+          <div class="branch-select-group">
+            <label for="sales-branch-select" class="branch-select-label">Select Branch:</label>
+            <div class="custom-select-wrap">
+              <select id="sales-branch-select" class="custom-select" aria-label="Choose branch">
+                <option value="Colombo" selected>Colombo Branch</option>
+                <option value="Kandy">Kandy Branch</option>
+                <option value="Galle">Galle Branch</option>
+                <option value="all">All Branches (Combined)</option>
+              </select>
+              <i class="fa-solid fa-chevron-down custom-select-arrow"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick branch buttons -->
+        <div class="branch-pill-list" id="branch-pills" role="tablist" aria-label="Quick branch buttons">
+          <button type="button" class="branch-pill active" data-branch="Colombo">
+            <i class="fa-solid fa-location-dot"></i> Colombo
+          </button>
+          <button type="button" class="branch-pill" data-branch="Kandy">
+            <i class="fa-solid fa-location-dot"></i> Kandy
+          </button>
+          <button type="button" class="branch-pill" data-branch="Galle">
+            <i class="fa-solid fa-location-dot"></i> Galle
+          </button>
+          <button type="button" class="branch-pill" data-branch="all">
+            <i class="fa-solid fa-globe"></i> All Branches (Combined)
+          </button>
+        </div>
+      </section>
+
+      <!-- ---- Branch KPI Summary Cards ---- -->
+      <section class="kpi-grid sales-kpi-grid" id="sales-kpi-grid" aria-label="Branch Key Performance Indicators">
+        <article class="kpi-card" id="sales-kpi-revenue">
+          <div class="kpi-card__icon-wrap kpi-card__icon-wrap--revenue">
+            <i class="fa-solid fa-sack-dollar"></i>
+          </div>
+          <div class="kpi-card__body">
+            <span class="kpi-card__label" id="sales-kpi-revenue-label">Total Revenue</span>
+            <span class="kpi-card__value" id="sales-kpi-revenue-value">—</span>
+          </div>
+        </article>
+
+        <article class="kpi-card" id="sales-kpi-units">
+          <div class="kpi-card__icon-wrap kpi-card__icon-wrap--units">
+            <i class="fa-solid fa-boxes-stacked"></i>
+          </div>
+          <div class="kpi-card__body">
+            <span class="kpi-card__label" id="sales-kpi-units-label">Total Units Sold</span>
+            <span class="kpi-card__value" id="sales-kpi-units-value">—</span>
+          </div>
+        </article>
+
+        <article class="kpi-card" id="sales-kpi-month">
+          <div class="kpi-card__icon-wrap kpi-card__icon-wrap--month">
+            <i class="fa-solid fa-trophy"></i>
+          </div>
+          <div class="kpi-card__body">
+            <span class="kpi-card__label">Peak Month</span>
+            <span class="kpi-card__value" id="sales-kpi-month-value">—</span>
+          </div>
+        </article>
+
+        <article class="kpi-card" id="sales-kpi-average">
+          <div class="kpi-card__icon-wrap kpi-card__icon-wrap--branch">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <div class="kpi-card__body">
+            <span class="kpi-card__label">Monthly Average</span>
+            <span class="kpi-card__value" id="sales-kpi-avg-value">—</span>
+          </div>
+        </article>
+      </section>
+
+      <!-- ---- Sales Detail Chart ---- -->
+      <section class="chart-card sales-chart-card" id="sales-chart-card" aria-label="Sales trend chart">
+        <div class="chart-card__header">
+          <h2 class="chart-card__title" id="sales-chart-title">
+            <i class="fa-solid fa-chart-area"></i> Monthly Sales & Units Trend — Colombo
+          </h2>
+          <div class="chart-legend-custom">
+            <span class="legend-badge legend-badge--rev"><i class="fa-solid fa-square"></i> Revenue (LKR '000)</span>
+            <span class="legend-badge legend-badge--units"><i class="fa-solid fa-circle"></i> Units Sold</span>
+          </div>
+        </div>
+        <div class="chart-card__canvas-wrap">
+          <canvas id="sales-detail-chart" aria-label="Chart showing monthly revenue and units sold"></canvas>
+        </div>
+      </section>
+
+      <!-- ---- Monthly Sales Details Table Section ---- -->
+      <section class="table-card" id="sales-table-card" aria-label="Monthly Sales Table">
+        <div class="table-card__header">
+          <div class="table-card__title-wrap">
+            <h2 class="table-card__title">
+              <i class="fa-solid fa-table-list"></i> Monthly Sales Records
+            </h2>
+            <p class="table-card__subtitle" id="table-subtitle">Showing 12-month performance for Colombo Branch</p>
+          </div>
+          <div class="table-card__controls">
+            <!-- Filter by Quarter -->
+            <div class="filter-pills" id="quarter-filter" role="tablist" aria-label="Quarter Filter">
+              <button type="button" class="filter-pill active" data-quarter="all">All Year</button>
+              <button type="button" class="filter-pill" data-quarter="Q1">Q1</button>
+              <button type="button" class="filter-pill" data-quarter="Q2">Q2</button>
+              <button type="button" class="filter-pill" data-quarter="Q3">Q3</button>
+              <button type="button" class="filter-pill" data-quarter="Q4">Q4</button>
+            </div>
+            <!-- Search input -->
+            <div class="table-search">
+              <i class="fa-solid fa-magnifying-glass table-search__icon"></i>
+              <input type="text" id="sales-month-search" class="table-search__input" placeholder="Search month..." aria-label="Search month">
+            </div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="sales-table" id="sales-table">
+            <thead>
+              <tr>
+                <th scope="col" class="th--num">#</th>
+                <th scope="col" class="th--month">Month</th>
+                <th scope="col" class="th--revenue">Monthly Revenue</th>
+                <th scope="col" class="th--units">Units Sold</th>
+                <th scope="col" class="th--avg">Avg. Price / Unit</th>
+                <th scope="col" class="th--mom">MoM Growth</th>
+                <th scope="col" class="th--share">Annual Share</th>
+              </tr>
+            </thead>
+            <tbody id="sales-table-body">
+              <!-- Dynamically populated by script.js -->
+            </tbody>
+            <tfoot id="sales-table-foot">
+              <!-- Dynamically populated by script.js -->
+            </tfoot>
+          </table>
+        </div>
+      </section>
+    </section>
+
+    <!-- ============================================================
+         PAGE 3: REPORTS PAGE VIEW
+         ============================================================ -->
+    <section class="reports-page page-view" id="page-reports" aria-label="Reports">
+      <div class="page-header">
+        <div class="page-header__left">
+          <span class="page-header__badge"><i class="fa-solid fa-chart-pie"></i> Analytics & Insights</span>
+          <h1 class="page-title">Executive Sales Reports</h1>
+          <p class="page-subtitle">Consolidated performance summary across all Lanka Fresh Mart branches</p>
+        </div>
+      </div>
+      <div class="reports-grid">
+        <article class="table-card">
+          <div class="table-card__header">
+            <div>
+              <h2 class="table-card__title"><i class="fa-solid fa-building-columns"></i> Branch Performance Comparison</h2>
+              <p class="table-card__subtitle">Annual performance breakdown across all branches</p>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="sales-table">
+              <thead>
+                <tr>
+                  <th>Branch</th>
+                  <th>Annual Revenue</th>
+                  <th>Total Units Sold</th>
+                  <th>Peak Month</th>
+                  <th>Contribution</th>
+                </tr>
+              </thead>
+              <tbody id="reports-branch-table-body">
+                <!-- Dynamically populated by script.js -->
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         PAGE 4: SETTINGS PAGE VIEW
+         ============================================================ -->
+    <section class="settings-page page-view" id="page-settings" aria-label="Settings">
+      <div class="page-header">
+        <div class="page-header__left">
+          <span class="page-header__badge"><i class="fa-solid fa-gear"></i> System Preferences</span>
+          <h1 class="page-title">Dashboard Settings</h1>
+          <p class="page-subtitle">Manage preferences, currency units, and display options</p>
+        </div>
+      </div>
+      <div class="settings-card">
+        <div class="settings-group">
+          <div class="settings-item">
+            <div>
+              <div class="settings-item__title">Default Currency</div>
+              <div class="settings-item__desc">Standard currency used for retail revenue reporting</div>
+            </div>
+            <span class="badge badge--pill">Sri Lankan Rupee (LKR)</span>
+          </div>
+          <div class="settings-item">
+            <div>
+              <div class="settings-item__title">Active Branches</div>
+              <div class="settings-item__desc">Monitored store locations</div>
+            </div>
+            <span class="badge badge--pill">Colombo, Kandy, Galle</span>
+          </div>
+          <div class="settings-item">
+            <div>
+              <div class="settings-item__title">Reporting Period</div>
+              <div class="settings-item__desc">Fiscal year records</div>
+            </div>
+            <span class="badge badge--pill">FY 2026 (Jan – Dec)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <p>&copy; 2026 Lanka Fresh Mart. All rights reserved.</p>
+  </footer>
+
+  <!-- Project script – loaded after DOM -->
+  <script src="script.js"></script>
+</body>
+
+</html>
